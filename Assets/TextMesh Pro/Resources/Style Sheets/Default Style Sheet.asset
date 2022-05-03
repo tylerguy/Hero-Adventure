@@ -10,7 +10,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab2114bdc8544297b417dfefe9f1e410, type: 3}
   m_Name: Default Style Sheet
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   m_StyleList:
   - m_Name: H1
     m_HashCode: 2425
