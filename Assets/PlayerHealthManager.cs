@@ -12,7 +12,7 @@ public class PlayerHealthManager : MonoBehaviour
     void Start()
     {
 
-        
+
         health = 1f;
 
 

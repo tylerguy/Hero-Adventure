@@ -23,7 +23,7 @@ public class playercontroller : MonoBehaviour
         Walk();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump(); 
+            Jump();
         }
     }
 
@@ -35,12 +35,12 @@ public class playercontroller : MonoBehaviour
         Rb2d.AddForce(new Vector2(MoveVector, 0), ForceMode2D.Force);
     }
 
-    
+
     bool OnFloor()
     {
         RaycastHit2D RayHit = Physics2D.Raycast(transform.position, Vector2.down, Length, Layer);
         Debug.DrawRay(transform.position,Vector3.down, Color.green, 10f);
-        
+
         if (RayHit.collider != null)
         {
             if (RayHit.distance <= 0.6f)
