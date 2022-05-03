@@ -4,13 +4,13 @@ Shader "TextMeshPro/Sprite"
 	{
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
-		
+
 		_StencilComp ("Stencil Comparison", Float) = 8
 		_Stencil ("Stencil ID", Float) = 0
 		_StencilOp ("Stencil Operation", Float) = 0
 		_StencilWriteMask ("Stencil Write Mask", Float) = 255
 		_StencilReadMask ("Stencil Read Mask", Float) = 255
-		
+
 		_CullMode ("Cull Mode", Float) = 0
 		_ColorMask ("Color Mask", Float) = 15
 		_ClipRect ("Clip Rect", vector) = (-32767, -32767, 32767, 32767)
@@ -21,19 +21,19 @@ Shader "TextMeshPro/Sprite"
 	SubShader
 	{
 		Tags
-		{ 
-			"Queue"="Transparent" 
-			"IgnoreProjector"="True" 
-			"RenderType"="Transparent" 
+		{
+			"Queue"="Transparent"
+			"IgnoreProjector"="True"
+			"RenderType"="Transparent"
 			"PreviewType"="Plane"
 			"CanUseSpriteAtlas"="True"
 		}
-		
+
 		Stencil
 		{
 			Ref [_Stencil]
 			Comp [_StencilComp]
-			Pass [_StencilOp] 
+			Pass [_StencilOp]
 			ReadMask [_StencilReadMask]
 			WriteMask [_StencilWriteMask]
 		}
@@ -58,7 +58,7 @@ Shader "TextMeshPro/Sprite"
 
             #pragma multi_compile __ UNITY_UI_CLIP_RECT
             #pragma multi_compile __ UNITY_UI_ALPHACLIP
-			
+
 			struct appdata_t
 			{
 				float4 vertex   : POSITION;
@@ -75,7 +75,7 @@ Shader "TextMeshPro/Sprite"
 				float4 worldPosition : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
 			};
-			
+
             sampler2D _MainTex;
 			fixed4 _Color;
 			fixed4 _TextureSampleAdd;
@@ -91,7 +91,7 @@ Shader "TextMeshPro/Sprite"
 				OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
 
                 OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
-				
+
                 OUT.color = v.color * _Color;
 				return OUT;
 			}
@@ -99,7 +99,7 @@ Shader "TextMeshPro/Sprite"
 			fixed4 frag(v2f IN) : SV_Target
 			{
 				half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
-				
+
                 #ifdef UNITY_UI_CLIP_RECT
 					color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
 				#endif
